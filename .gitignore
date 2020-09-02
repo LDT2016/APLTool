@@ -1,0 +1,5 @@
+﻿.vs
+*.7z
+APLTools/bin
+APLTools.sln.DotSettings.user
+APLTools/obj

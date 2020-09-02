@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
+  </startup>
+  <appSettings>
+    <add key="SourcePath" value="AMSTERDAMNAS1P.JTMGMT.INET/Amsterdam/WWW/Configurator/" />
+    <add key="DestinationPath" value="D:\projects\TCTFS05\Websites\Internet\Configurator\DEV\Configurator.DEV\Web\" />
+    <add key="SubFolder" value="designs/direct/"/>
+    <add key="FtpUserName" value="xding" />
+    <add key="FtpPassword" value="M2Z5S7K1" />
+    <add key="FtpHost" value="ftp://ftp.tc.inet/" />
+  </appSettings>
+  <connectionStrings>
+    <add name="db" connectionString="Data Source=nltc550;initial catalog=APLWebsites;User ID=dev;Password=4Amsterdam;MultipleActiveResultSets=True"/>
+  </connectionStrings>
+</configuration>

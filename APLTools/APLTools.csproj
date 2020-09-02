@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D58C9CFA-B369-4AE2-9006-36142AA0B59C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>APLTools</RootNamespace>
+    <AssemblyName>APLTools</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>D:\LIYUJIA\Source\My2008\testForm\GeneralTools\bin\Debug\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>474092DE3396E357C0684BB054F545270B3C15E2</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>APLTools_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\WK03(MVC EF Study)\DataBaseChange\packages\Ionic.Zip.1.9.1.8\lib\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Svg">
+      <HintPath>..\..\SVGToImage-master\SVGToImage-master\SVGToImage\bin\Debug\Svg.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Advance\BLL\DataImport.cs" />
+    <Compile Include="Advance\BLL\ImprintFormat.cs" />
+    <Compile Include="Advance\Common\CustomException.cs" />
+    <Compile Include="Advance\Common\DataValid.cs" />
+    <Compile Include="Advance\Common\PageDataUtil.cs" />
+    <Compile Include="Advance\DAL\DALHelper.cs" />
+    <Compile Include="Advance\DAL\DataImport.cs" />
+    <Compile Include="Advance\DAL\ImprintFormat.cs" />
+    <Compile Include="Advance\DBUtility\DataBaseInfo.cs" />
+    <Compile Include="Advance\DBUtility\DbHelper.cs" />
+    <Compile Include="Advance\Model\AppToolsTargetModule.cs" />
+    <Compile Include="Advance\Model\CListItem.cs" />
+    <Compile Include="Advance\Model\ImprintFormat.cs" />
+    <Compile Include="Advance\Model\PageData.cs" />
+    <Compile Include="Advance\Model\Scene7URLBO.cs" />
+    <Compile Include="Advance\Model\UserImage.cs" />
+    <Compile Include="Advance\UserControls\Button.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\UserControls\Button.Designer.cs">
+      <DependentUpon>Button.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\UserControls\DataGridViewActionButtonColumn.cs" />
+    <Compile Include="Advance\UserControls\DataGridViewPreviewButtonColumn.cs" />
+    <Compile Include="Advance\UserControls\DataGridViewDetailButtonColumn.cs" />
+    <Compile Include="Advance\UserControls\LabelLine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Advance\UserControls\LabelMuti.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\UserControls\LabelMuti.Designer.cs">
+      <DependentUpon>LabelMuti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\UserControls\NavBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\UserControls\NavBar.Designer.cs">
+      <DependentUpon>NavBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\UserControls\PageBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\UserControls\PageBar.Designer.cs">
+      <DependentUpon>PageBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\UserControls\TextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\UserControls\TextBox.Designer.cs">
+      <DependentUpon>TextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\WinUI\BackgroundProductionFileDownloader\FolderImageCodeModel.cs" />
+    <Compile Include="Advance\WinUI\BackgroundProductionFileDownloader\BackgroundProductionFileDownloader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\WinUI\BackgroundProductionFileDownloader\BackgroundProductionFileDownloader.Designer.cs">
+      <DependentUpon>BackgroundProductionFileDownloader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\WinUI\BackgroundProductionFileDownloader\ImageModel.cs" />
+    <Compile Include="Advance\WinUI\BackgroundProductionFileDownloader\Logic.cs" />
+    <Compile Include="Advance\WinUI\BackgroundProductionFileDownloader\UserSettingsModel.cs" />
+    <Compile Include="Advance\WinUI\Import\ItemIds.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\WinUI\Import\ItemIds.Designer.cs">
+      <DependentUpon>ItemIds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\DigitalBackgroundCreate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\DigitalBackgroundCreate.Designer.cs">
+      <DependentUpon>DigitalBackgroundCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\SavedArtCreate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\SavedArtCreate.Designer.cs">
+      <DependentUpon>SavedArtCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\SavedPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\SavedPreview.Designer.cs">
+      <DependentUpon>SavedPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\Preview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\Preview.Designer.cs">
+      <DependentUpon>Preview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\SavedArtSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\SavedArtSearch.Designer.cs">
+      <DependentUpon>SavedArtSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\ChangeToSVG.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\ChangeToSVG.Designer.cs">
+      <DependentUpon>ChangeToSVG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\SharedArtSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\SharedArtSearch.Designer.cs">
+      <DependentUpon>SharedArtSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\WinUI\Main\Default.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\WinUI\Main\Default.Designer.cs">
+      <DependentUpon>Default.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\SharedArtCreate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\SharedArtCreate.Designer.cs">
+      <DependentUpon>SharedArtCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CheckDigitalBackground.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckDigitalBackground.Designer.cs">
+      <DependentUpon>CheckDigitalBackground.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Advance\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Advance\FormSysMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Advance\FormSysMessage.Designer.cs">
+      <DependentUpon>FormSysMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\AddArtRange.cs" />
+    <Compile Include="Logic\DamConnector.cs" />
+    <Compile Include="Logic\DamToolsHelper.cs" />
+    <Compile Include="Logic\MetaDataConverter.cs" />
+    <Compile Include="Logic\MimeMapping.cs" />
+    <Compile Include="Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Constant.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\FileData.cs" />
+    <Compile Include="Models\JcrContent.cs" />
+    <Compile Include="Models\MetaData.cs" />
+    <Compile Include="Models\MetaDataExtend.cs" />
+    <Compile Include="Models\PostData.cs" />
+    <Compile Include="Models\QueryResult.cs" />
+    <Compile Include="Models\RequestResult.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="SavedArtwork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SavedArtwork.Designer.cs">
+      <DependentUpon>SavedArtwork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SharedArtwork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SharedArtwork.Designer.cs">
+      <DependentUpon>SharedArtwork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TransferArtwork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TransferArtwork.Designer.cs">
+      <DependentUpon>TransferArtwork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UploadArtwork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UploadArtwork.Designer.cs">
+      <DependentUpon>UploadArtwork.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Advance\UserControls\Button.resx">
+      <DependentUpon>Button.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\UserControls\TextBox.resx">
+      <DependentUpon>TextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\WinUI\BackgroundProductionFileDownloader\BackgroundProductionFileDownloader.resx">
+      <DependentUpon>BackgroundProductionFileDownloader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\WinUI\Import\ItemIds.resx">
+      <DependentUpon>ItemIds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\WinUI\UseImage\DigitalBackgroundCreate.resx">
+      <DependentUpon>DigitalBackgroundCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\WinUI\UseImage\SavedArtCreate.resx">
+      <DependentUpon>SavedArtCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\WinUI\UseImage\SavedPreview.resx">
+      <DependentUpon>SavedPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\WinUI\UseImage\Preview.resx">
+      <DependentUpon>Preview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\WinUI\UseImage\SavedArtSearch.resx">
+      <DependentUpon>SavedArtSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\WinUI\UseImage\ChangeToSVG.resx">
+      <DependentUpon>ChangeToSVG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\WinUI\UseImage\SharedArtSearch.resx">
+      <DependentUpon>SharedArtSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\WinUI\Main\Default.resx">
+      <DependentUpon>Default.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\WinUI\UseImage\SharedArtCreate.resx">
+      <DependentUpon>SharedArtCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckDigitalBackground.resx">
+      <DependentUpon>CheckDigitalBackground.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="SavedArtwork.resx">
+      <DependentUpon>SavedArtwork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SharedArtwork.resx">
+      <DependentUpon>SharedArtwork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransferArtwork.resx">
+      <DependentUpon>TransferArtwork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UploadArtwork.resx">
+      <DependentUpon>UploadArtwork.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="APLTools_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\aa-2_16.gif" />
+    <Content Include="Resources\aa-2_36.jpg" />
+    <Content Include="Resources\Baner.gif" />
+    <Content Include="Resources\bg.gif" />
+    <Content Include="Resources\blue-ball.png" />
+    <Content Include="Resources\BtnDelete.png" />
+    <Content Include="Resources\BtnDelete02.png" />
+    <Content Include="Resources\BtnGO.png" />
+    <Content Include="Resources\BtnModify.png" />
+    <Content Include="Resources\BtnModify02.png" />
+    <Content Include="Resources\BtnView.png" />
+    <Content Include="Resources\BtnView02.png" />
+    <Content Include="Resources\but01-a.png" />
+    <Content Include="Resources\ButtonBG01.png" />
+    <Content Include="Resources\ButtonBG02.png" />
+    <Content Include="Resources\category.png" />
+    <Content Include="Resources\CompanyLogo.png" />
+    <Content Include="Resources\dd.gif" />
+    <Content Include="Resources\Delete.png" />
+    <Content Include="Resources\DesignerLogo.png" />
+    <Content Include="Resources\devices.png" />
+    <Content Include="Resources\dot1.gif" />
+    <Content Include="Resources\FooterBG.png" />
+    <Content Include="Resources\green-ball.png" />
+    <Content Include="Resources\HeaderBG.png" />
+    <Content Include="Resources\icon_7.gif" />
+    <Content Include="Resources\ico_email.gif" />
+    <Content Include="Resources\ico_qq.gif" />
+    <Content Include="Resources\ico_time.gif" />
+    <Content Include="Resources\index_11.gif" />
+    <Content Include="Resources\index_15.gif" />
+    <Content Include="Resources\index_19.gif" />
+    <Content Include="Resources\index_23.gif" />
+    <Content Include="Resources\index_24.gif" />
+    <Content Include="Resources\index_33.gif" />
+    <Content Include="Resources\index_34.gif" />
+    <Content Include="Resources\index_39.gif" />
+    <Content Include="Resources\index_42.gif" />
+    <Content Include="Resources\index_53.gif" />
+    <Content Include="Resources\index_57.gif" />
+    <Content Include="Resources\index_58.gif" />
+    <Content Include="Resources\index_63.gif" />
+    <Content Include="Resources\Input.png" />
+    <Content Include="Resources\io.gif" />
+    <Content Include="Resources\LabelBG.png" />
+    <Content Include="Resources\leftbut01.gif" />
+    <Content Include="Resources\Logo.png" />
+    <Content Include="Resources\LogoMain.png" />
+    <Content Include="Resources\LogoManageDepartment.png" />
+    <Content Include="Resources\LogoManageEmployee.png" />
+    <Content Include="Resources\Main.png" />
+    <Content Include="Resources\ManageDepartment.png" />
+    <Content Include="Resources\ManageEmployee.png" />
+    <Content Include="Resources\ManageEmployeeCreate.png" />
+    <Content Include="Resources\ManageEmployeeDelete.png" />
+    <Content Include="Resources\ManageEmployeeDetail.png" />
+    <Content Include="Resources\ManageEmployeeList.png" />
+    <Content Include="Resources\ManageEmployeeModify.png" />
+    <Content Include="Resources\MessageError.png" />
+    <Content Include="Resources\MessageInfo.png" />
+    <Content Include="Resources\MessageWarn.png" />
+    <Content Include="Resources\more_16.gif" />
+    <Content Include="Resources\NavBarBG01.png" />
+    <Content Include="Resources\NavBarBG02.png" />
+    <Content Include="Resources\NavBtnBG.png" />
+    <Content Include="Resources\NavBtnMain.png" />
+    <Content Include="Resources\NavBtnManageDepartment.png" />
+    <Content Include="Resources\NavBtnManageEmployee.png" />
+    <Content Include="Resources\NavList.gif" />
+    <Content Include="Resources\network.png" />
+    <Content Include="Resources\NotNull.png" />
+    <Content Include="Resources\PageFirst.png" />
+    <Content Include="Resources\PageLast.png" />
+    <Content Include="Resources\PageNext.png" />
+    <Content Include="Resources\PagePrev.png" />
+    <Content Include="Resources\ReadOnly.png" />
+    <Content Include="Resources\red-ball.png" />
+    <Content Include="Resources\register.png" />
+    <Content Include="Resources\SideBarBG.png" />
+    <Content Include="Resources\spacer.gif" />
+    <Content Include="Resources\TableHeaderBG.png" />
+    <Content Include="Resources\TableRowBG.png" />
+    <Content Include="Resources\TipError.png" />
+    <Content Include="Resources\TipIE.png" />
+    <Content Include="Resources\TipInfo.png" />
+    <Content Include="Resources\TipScreen.png" />
+    <Content Include="Resources\TipService.png" />
+    <Content Include="Resources\TipWarn.png" />
+    <Content Include="Resources\TitleCreate.png" />
+    <Content Include="Resources\TitleDelete.png" />
+    <Content Include="Resources\TitleDetail.png" />
+    <Content Include="Resources\TitleLine.png" />
+    <Content Include="Resources\TitleList.png" />
+    <Content Include="Resources\TitleMain.png" />
+    <Content Include="Resources\TitleModify.png" />
+    <Content Include="Resources\UpgradeNavigation.png" />
+    <Content Include="Resources\users.png" />
+    <Content Include="Resources\v2_gx_pxjg1.gif" />
+    <Content Include="Resources\v2_gx_pxjg2.gif" />
+    <Content Include="Resources\v2_gx_pxjg3.gif" />
+    <Content Include="Resources\v2_gx_pxjg4.gif" />
+    <Content Include="Resources\v2_gx_pxjg5.gif" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
