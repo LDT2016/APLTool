@@ -57,11 +57,12 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.btnBatchSubmit = new System.Windows.Forms.Button();
             this.txtNecleusBatchEnter = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picThumbnial)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNucleus)).BeginInit();
@@ -314,6 +315,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label14);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.label11);
@@ -323,6 +325,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(467, 174);
             this.panel2.TabIndex = 24;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label13.ForeColor = System.Drawing.Color.Red;
+            this.label13.Location = new System.Drawing.Point(126, 26);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(68, 13);
+            this.label13.TabIndex = 19;
+            this.label13.Text = "for instance, ";
             // 
             // label12
             // 
@@ -361,15 +374,16 @@
             this.txtNecleusBatchEnter.Size = new System.Drawing.Size(450, 98);
             this.txtNecleusBatchEnter.TabIndex = 14;
             // 
-            // label13
+            // label14
             // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.Red;
-            this.label13.Location = new System.Drawing.Point(126, 26);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(173, 13);
-            this.label13.TabIndex = 19;
-            this.label13.Text = "for instance, Blk-37-026,Blk-37-025";
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Adobe Devanagari", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label14.ForeColor = System.Drawing.Color.Red;
+            this.label14.Location = new System.Drawing.Point(189, 24);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(175, 14);
+            this.label14.TabIndex = 20;
+            this.label14.Text = "  Blk-37-026；Blk-37-025";
             // 
             // SharedArtwork
             // 
@@ -446,5 +460,6 @@
         private System.Windows.Forms.TextBox txtNecleusBatchEnter;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
     }
 }
