@@ -37,8 +37,112 @@ namespace APLTools.Advance.WinUI.UseImage
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.WorkerSupportsCancellation = true;
+            backgroundWorker1.DoWork += BackgroundWorker1_DoWork;
+            backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
+            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
         }
 
+        // This event handler is where the time-consuming work is done.
+        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            SearchAction();
+        }
+        private void SearchAction()
+        {
+            var cusNumber = txtCustomerNumber.Text.Trim();
+            var imprintFormat = txtImprintAreaCode.Text.Trim();
+            var processId = txtProcessId.Text.Trim();
+
+            var meta = new MetaData
+            {
+                customerNumber = cusNumber,
+                processIds = new List<string>
+                                        {
+                                            processId
+                                        },
+                imprintFormat = imprintFormat
+            };
+
+            var conType = rbtniNet.Checked
+                              ? ConnectionType.Dev
+                              : ConnectionType.Live;
+            var damConnector = new DamConnector(conType);
+            var metaDataList = damConnector.GetSavedArtThumbnailsByPage(meta, -1, -1);
+
+            if (metaDataList == null)
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new Action(delegate
+                   {
+                       instance.btnSearch.Enabled = true;
+                       FormSysMessage.ShowMessage("Sreach Exception - can't find metaDataList on server!");
+                   }));
+                }
+                else
+                {
+                    instance.btnSearch.Enabled = true;
+                    FormSysMessage.ShowMessage("Sreach Exception - can't find metaDataList on server!");
+                }
+                return;
+            }
+
+            savedArtWorkList = metaDataList.Select((x, i) => new UserImage
+            {
+                RowNum = i + 1,
+                OriginalFilename = x.originalFilename,
+                ColorSpace = x.colorSpace,
+                FilenameNoExtension = x.filenameNoExtension,
+                Type = UserImageType.SavedArt,
+                FileBytes = x.fileBytes
+            })
+                                           .ToList();
+
+
+            if (backgroundWorker1.WorkerSupportsCancellation == true)
+            {
+                // Cancel the asynchronous operation.
+                backgroundWorker1.CancelAsync();
+            }
+        }
+
+        // This event handler updates the progress.
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+        }
+
+        // This event handler deals with the results of the background operation.
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(delegate
+                                  {
+                                      ArtBind();
+                                      instance.btnSearch.Enabled = true;
+                                  }));
+            }
+            else
+            {
+                ArtBind();
+                instance.btnSearch.Enabled = true;
+            }
+
+            if (e.Cancelled )
+            {
+                // "Canceled!";
+            }
+            else if (e.Error != null)
+            {
+                // "Error: " + e.Error.Message;
+            }
+            else
+            {
+                // "Done!";
+            }
+        }
         #endregion
 
         #region properties
@@ -70,44 +174,12 @@ namespace APLTools.Advance.WinUI.UseImage
             instance.PageBar.DataBind();
 
 
-            var cusNumber = txtCustomerNumber.Text.Trim();
-            var imprintFormat = txtImprintAreaCode.Text.Trim();
-            var processId = txtProcessId.Text.Trim();
-
-            var meta = new MetaData
-                       {
-                           customerNumber = cusNumber,
-                           processIds = new List<string> { processId },
-                           imprintFormat = imprintFormat
-                       };
-            var conType = rbtniNet.Checked
-                              ? ConnectionType.Dev
-                              : ConnectionType.Live;
-            var damConnector = new DamConnector(conType);
-            var metaDataList = damConnector.GetSavedArtThumbnailsByPage(meta, -1, -1);
-
-            if (metaDataList == null)
+            if (backgroundWorker1.IsBusy != true)
             {
-                instance.btnSearch.Enabled = true;
-                FormSysMessage.ShowMessage("Sreach Exception - can't find metaDataList on server!");
-                return;
+                // Start the asynchronous operation.
+                backgroundWorker1.RunWorkerAsync();
             }
-            savedArtWorkList = metaDataList.Select((x, i) => new UserImage
-                                                              {
-                                                                  RowNum = i + 1,
-                                                                  OriginalFilename = x.originalFilename,
-                                                                  ColorSpace = x.colorSpace,
-                                                                  FilenameNoExtension = x.filenameNoExtension,
-                                                                  Type = UserImageType.SavedArt,
-                                                                  FileBytes = x.fileBytes
-            })
-                                            .ToList();
 
-            ArtBind();
-
-            instance.lblDamServiceCount.Text = damConnector.GetSavedArtCount(meta)
-                                                  .ToString();
-            instance.btnSearch.Enabled = true;
         }
 
         private void ArtBind()
@@ -116,7 +188,7 @@ namespace APLTools.Advance.WinUI.UseImage
             instance.PageBar.DataSource = PageDataUtil.GetPageList(savedArtWorkList, instance.PageBar.PageSize, instance.PageBar.CurPage);
             instance.PageBar.DataBind();
 
-            var t = new Thread(delegate()
+            var t = new Thread(delegate ()
                                {
                                    for (var i = 0; i < savedArtWorkList.Count; i++)
                                    {

@@ -23,8 +23,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PnlMainArea = new System.Windows.Forms.Panel();
             this.PnlDgvBack = new System.Windows.Forms.Panel();
             this.DgvGrid = new System.Windows.Forms.DataGridView();
@@ -36,6 +36,8 @@
             this.Preview = new System.Windows.Forms.DataGridViewImageColumn();
             this.Nucleus = new DMS.DataGridViewPreviewButtonColumn();
             this.PnlTopTitle = new System.Windows.Forms.Panel();
+            this.lblDamServiceCount = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.PageBar = new APLTools.Advance.UserControls.PageBar();
@@ -59,8 +61,7 @@
             this.txtCustomerNumber = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblDamServiceCount = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.PnlMainArea.SuspendLayout();
             this.PnlDgvBack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvGrid)).BeginInit();
@@ -98,14 +99,14 @@
             this.DgvGrid.BackgroundColor = System.Drawing.Color.White;
             this.DgvGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DgvGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DgvGrid.ColumnHeadersHeight = 30;
             this.DgvGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.No,
@@ -121,15 +122,15 @@
             this.DgvGrid.MultiSelect = false;
             this.DgvGrid.Name = "DgvGrid";
             this.DgvGrid.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DgvGrid.RowHeadersVisible = false;
             this.DgvGrid.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.DgvGrid.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
@@ -214,6 +215,25 @@
             this.PnlTopTitle.Name = "PnlTopTitle";
             this.PnlTopTitle.Size = new System.Drawing.Size(790, 199);
             this.PnlTopTitle.TabIndex = 6;
+            // 
+            // lblDamServiceCount
+            // 
+            this.lblDamServiceCount.AutoSize = true;
+            this.lblDamServiceCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblDamServiceCount.Location = new System.Drawing.Point(714, 169);
+            this.lblDamServiceCount.Name = "lblDamServiceCount";
+            this.lblDamServiceCount.Size = new System.Drawing.Size(49, 25);
+            this.lblDamServiceCount.TabIndex = 26;
+            this.lblDamServiceCount.Text = "N/A";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(546, 175);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(171, 13);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Get Saved Count By Dam Sercive:";
             // 
             // btnClear
             // 
@@ -442,25 +462,6 @@
             this.dataGridViewButtonColumn1.Text = "PING监测";
             this.dataGridViewButtonColumn1.UseColumnTextForButtonValue = true;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(546, 175);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(171, 13);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "Get Saved Count By Dam Sercive:";
-            // 
-            // lblDamServiceCount
-            // 
-            this.lblDamServiceCount.AutoSize = true;
-            this.lblDamServiceCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblDamServiceCount.Location = new System.Drawing.Point(714, 169);
-            this.lblDamServiceCount.Name = "lblDamServiceCount";
-            this.lblDamServiceCount.Size = new System.Drawing.Size(49, 25);
-            this.lblDamServiceCount.TabIndex = 26;
-            this.lblDamServiceCount.Text = "N/A";
-            // 
             // SavedArt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -519,6 +520,7 @@
         private System.Windows.Forms.RadioButton rbtniNet;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblDamServiceCount;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Drawing;
 using System.IO;
@@ -31,8 +32,13 @@ namespace APLTools.Advance.WinUI.UseImage
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
-        }
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.WorkerSupportsCancellation = true;
+            backgroundWorker1.DoWork += BackgroundWorker1_DoWork;
+            backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
+            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
 
+        }
         #endregion
 
         #region properties
@@ -57,6 +63,7 @@ namespace APLTools.Advance.WinUI.UseImage
         #endregion
 
         #region methods
+        private BackgroundWorker backgroundWorker1 = new BackgroundWorker();
 
         private static void init()
         {
@@ -107,12 +114,58 @@ namespace APLTools.Advance.WinUI.UseImage
             instance.DgvGrid.DataSource = null;
         }
 
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            // "Done!";
+            if (InvokeRequired)
+            {
+                Invoke(new Action(delegate
+                                  {
+                                      ArtBind();
+                                      instance.btnSearch.Enabled = true;
+                                  }));
+            }
+            else
+            {
+                ArtBind();
+                instance.btnSearch.Enabled = true;
+            }
+
+            if (e.Cancelled)
+            {
+                // "Canceled!";
+            }
+            else if (e.Error != null)
+            {
+                // "Error: " + e.Error.Message;
+            }
+            else
+            {
+
+            }
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+        }
+
+        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            SearchAction();
+        }
+
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             instance.btnSearch.Enabled = false;
             instance.PageBar.DataSource = null;
             instance.PageBar.DataBind();
 
+            backgroundWorker1.RunWorkerAsync();
+        }
+
+        private void SearchAction()
+        {
             var vendorId = txtVendorId.Text.Trim();
             var itemId = txtItemId.Text.Trim();
             var processId = txtProcessId.Text.Trim();
@@ -140,8 +193,19 @@ namespace APLTools.Advance.WinUI.UseImage
 
             if (metaDataList == null || metaDataList.Count == 0)
             {
-                instance.btnSearch.Enabled = true;
-                FormSysMessage.ShowMessage("Sreach Exception - can't find metaDataList on server!");
+                if (InvokeRequired)
+                {
+                    Invoke(new Action(delegate
+                                      {
+                                          instance.btnSearch.Enabled = true;
+                                          FormSysMessage.ShowMessage("Sreach Exception - can't find metaDataList on server!");
+                                      }));
+                }
+                else
+                {
+                    instance.btnSearch.Enabled = true;
+                    FormSysMessage.ShowMessage("Sreach Exception - can't find metaDataList on server!");
+                }
                 return;
             }
 
@@ -155,9 +219,13 @@ namespace APLTools.Advance.WinUI.UseImage
             })
                                             .ToList();
 
-            ArtBind();
 
-            instance.btnSearch.Enabled = true;
+
+            if (backgroundWorker1.WorkerSupportsCancellation == true)
+            {
+                // Cancel the asynchronous operation.
+                backgroundWorker1.CancelAsync();
+            }
         }
 
         private void DgvGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
