@@ -75,7 +75,7 @@ namespace APLTools.Advance.WinUI.UseImage
             }
         }
 
-        
+
 
         private string fullFileName;
         private void btnChooseFile_Click(object sender, EventArgs e)
@@ -106,20 +106,16 @@ namespace APLTools.Advance.WinUI.UseImage
 
             try
             {
-                //Enabled = false;
+                GetItemIdsAndProcessIds(out _, out var processIds);
+
                 var meta = new MetaData
-                           {
-                               customerNumber = txtCusNum.Text.Trim(),
-                               processIds = string.IsNullOrEmpty(txtProcessId.Text.Trim())
-                                                ? null
-                                                : new List<string>
-                                                  {
-                                                      txtProcessId.Text.Trim()
-                                                  },
-                               imprintFormat = txtImprintFormat.Text.Trim(),
-                               sequenceNumber = null,
-                               originalFilename = Path.GetFileName(fullFileName)
-                           };
+                {
+                    customerNumber = txtCusNum.Text.Trim(),
+                    processIds = processIds,
+                    imprintFormat = txtImprintFormat.Text.Trim(),
+                    sequenceNumber = null,
+                    originalFilename = Path.GetFileName(fullFileName)
+                };
 
                 ret = DamToolsHelper.AddSavedArtwork(fullFileName, meta);
 
@@ -150,13 +146,12 @@ namespace APLTools.Advance.WinUI.UseImage
         }
         private void BatchSubmitAction()
         {
-            var ret = false;
             var successCount = 0;
             var failed = 0;
 
             try
             {
-                this.Enabled = false;
+                GetItemIdsAndProcessIds(out _, out var processIds);
 
                 for (var i = 0; i < listSavedFile.Items.Count; i++)
                 {
@@ -166,20 +161,13 @@ namespace APLTools.Advance.WinUI.UseImage
                     var meta = new MetaData
                     {
                         customerNumber = txtCusNum.Text.Trim(),
-                        processIds = string.IsNullOrEmpty(txtProcessId.Text.Trim())
-                                                    ? null
-                                                    : new List<string>
-                                                      {
-                                                          txtProcessId.Text.Trim()
-                                                      },
+                        processIds = processIds,
                         imprintFormat = txtImprintFormat.Text.Trim(),
                         sequenceNumber = null,
                         originalFilename = Path.GetFileName(uploadfile)
                     };
 
-                    ret = DamToolsHelper.AddSavedArtwork(uploadfile, meta);
-
-                    if (ret)
+                    if (DamToolsHelper.AddSavedArtwork(uploadfile, meta))
                     {
                         successCount += 1;
                     }
@@ -214,6 +202,37 @@ namespace APLTools.Advance.WinUI.UseImage
                 }
             }
         }
+        private void GetItemIdsAndProcessIds(out List<string> itemIds, out List<string> processIds)
+        {
+            itemIds = null;
+            processIds = null;
+
+            if (txtProcessId.Text.Trim()
+                            .Length
+                > 0)
+            {
+                if (txtProcessId.Text.Trim()
+                                .IndexOf(";", StringComparison.Ordinal)
+                    > -1)
+                {
+                    processIds = txtProcessId.Text.Trim()
+                                             .Replace("\r\n", ";")
+                                             .Replace(" ", string.Empty)
+                                             .Split(";".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
+                                             .ToList();
+                }
+                else
+                {
+                    processIds = new List<string>
+                                 {
+                                     txtProcessId.Text.Replace(" ", string.Empty)
+                                 };
+
+                    
+                }
+            }
+
+        }
 
         private void btnChooseFilePath_Click(object sender, EventArgs e)
         {
@@ -228,7 +247,6 @@ namespace APLTools.Advance.WinUI.UseImage
                 listSavedFile.Items.AddRange(allfiles);
                 lblUploadFileCount.Text = listSavedFile.Items.Count.ToString();
             }
-
         }
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)

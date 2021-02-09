@@ -56,7 +56,7 @@ namespace APLTools.Advance.WinUI.UseImage
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            SvgDocument svgDocument = SvgDocument.Open(@"D:\Projects\Git\websites\configurator-web\Configurator.Web\ClientApp\build\resources\assets\imprint\location\APRON_001.jpg");
+            //SvgDocument svgDocument = SvgDocument.Open(@"D:\Projects\Git\websites\configurator-web\Configurator.Web\ClientApp\build\resources\assets\imprint\location\APRON_001.jpg");
         }
     }
 }

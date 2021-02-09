@@ -41,7 +41,6 @@
             this.picThumbnial = new System.Windows.Forms.PictureBox();
             this.cbFileNames = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.imageSearchName = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -57,12 +56,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.btnBatchSubmit = new System.Windows.Forms.Button();
             this.txtNecleusBatchEnter = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picThumbnial)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNucleus)).BeginInit();
@@ -76,9 +77,10 @@
             // 
             // txtItemId
             // 
-            this.txtItemId.Location = new System.Drawing.Point(77, 175);
+            this.txtItemId.Location = new System.Drawing.Point(77, 205);
+            this.txtItemId.Multiline = true;
             this.txtItemId.Name = "txtItemId";
-            this.txtItemId.Size = new System.Drawing.Size(100, 20);
+            this.txtItemId.Size = new System.Drawing.Size(151, 80);
             this.txtItemId.TabIndex = 2;
             // 
             // txtVendorId
@@ -92,7 +94,7 @@
             // 
             this.rbtnSingle.AutoSize = true;
             this.rbtnSingle.Checked = true;
-            this.rbtnSingle.Location = new System.Drawing.Point(89, 202);
+            this.rbtnSingle.Location = new System.Drawing.Point(78, 408);
             this.rbtnSingle.Name = "rbtnSingle";
             this.rbtnSingle.Size = new System.Drawing.Size(54, 17);
             this.rbtnSingle.TabIndex = 4;
@@ -103,7 +105,7 @@
             // rbtnMultiple
             // 
             this.rbtnMultiple.AutoSize = true;
-            this.rbtnMultiple.Location = new System.Drawing.Point(149, 202);
+            this.rbtnMultiple.Location = new System.Drawing.Point(138, 408);
             this.rbtnMultiple.Name = "rbtnMultiple";
             this.rbtnMultiple.Size = new System.Drawing.Size(61, 17);
             this.rbtnMultiple.TabIndex = 5;
@@ -112,7 +114,7 @@
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(15, 284);
+            this.btnSubmit.Location = new System.Drawing.Point(15, 431);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(189, 23);
             this.btnSubmit.TabIndex = 6;
@@ -132,7 +134,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 178);
+            this.label2.Location = new System.Drawing.Point(15, 205);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 8;
@@ -141,7 +143,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 204);
+            this.label3.Location = new System.Drawing.Point(4, 410);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 9;
@@ -150,7 +152,7 @@
             // picThumbnial
             // 
             this.picThumbnial.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picThumbnial.Location = new System.Drawing.Point(647, 129);
+            this.picThumbnial.Location = new System.Drawing.Point(654, 129);
             this.picThumbnial.Name = "picThumbnial";
             this.picThumbnial.Size = new System.Drawing.Size(50, 50);
             this.picThumbnial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -161,7 +163,7 @@
             // 
             this.cbFileNames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFileNames.FormattingEnabled = true;
-            this.cbFileNames.Location = new System.Drawing.Point(264, 17);
+            this.cbFileNames.Location = new System.Drawing.Point(271, 17);
             this.cbFileNames.Name = "cbFileNames";
             this.cbFileNames.Size = new System.Drawing.Size(121, 21);
             this.cbFileNames.TabIndex = 11;
@@ -177,16 +179,6 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "【使用方法】填好VenderId，ItemId，选择ColorSpace，然后在右侧Dropdown中选择一个图片，等图片在下方显示出来后点击Submit，如果弹" +
     "出成功的提示框，说明添加成功。";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label5.Location = new System.Drawing.Point(2, 257);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(223, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "程序没有校验，请确保都填好后再提交。";
             // 
             // toolTip1
             // 
@@ -208,7 +200,7 @@
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.imageSearchName);
-            this.panel1.Location = new System.Drawing.Point(230, 43);
+            this.panel1.Location = new System.Drawing.Point(237, 43);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(403, 57);
             this.panel1.TabIndex = 15;
@@ -244,7 +236,7 @@
             // 
             // txtThumbnialUrl
             // 
-            this.txtThumbnialUrl.Location = new System.Drawing.Point(227, 129);
+            this.txtThumbnialUrl.Location = new System.Drawing.Point(234, 129);
             this.txtThumbnialUrl.Multiline = true;
             this.txtThumbnialUrl.Name = "txtThumbnialUrl";
             this.txtThumbnialUrl.Size = new System.Drawing.Size(406, 50);
@@ -253,7 +245,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(227, 113);
+            this.label6.Location = new System.Drawing.Point(234, 113);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(119, 13);
             this.label6.TabIndex = 19;
@@ -262,7 +254,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(233, 192);
+            this.label7.Location = new System.Drawing.Point(240, 192);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(108, 13);
             this.label7.TabIndex = 20;
@@ -271,7 +263,7 @@
             // picNucleus
             // 
             this.picNucleus.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picNucleus.Location = new System.Drawing.Point(647, 208);
+            this.picNucleus.Location = new System.Drawing.Point(654, 208);
             this.picNucleus.Name = "picNucleus";
             this.picNucleus.Size = new System.Drawing.Size(50, 50);
             this.picNucleus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -280,7 +272,7 @@
             // 
             // txtNucleusUrl
             // 
-            this.txtNucleusUrl.Location = new System.Drawing.Point(227, 208);
+            this.txtNucleusUrl.Location = new System.Drawing.Point(234, 208);
             this.txtNucleusUrl.Multiline = true;
             this.txtNucleusUrl.Name = "txtNucleusUrl";
             this.txtNucleusUrl.Size = new System.Drawing.Size(406, 50);
@@ -288,7 +280,7 @@
             // 
             // txtProcessId
             // 
-            this.txtProcessId.Location = new System.Drawing.Point(78, 227);
+            this.txtProcessId.Location = new System.Drawing.Point(77, 309);
             this.txtProcessId.Name = "txtProcessId";
             this.txtProcessId.Size = new System.Drawing.Size(100, 20);
             this.txtProcessId.TabIndex = 21;
@@ -296,7 +288,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 230);
+            this.label8.Location = new System.Drawing.Point(15, 309);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(57, 13);
             this.label8.TabIndex = 22;
@@ -306,7 +298,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(224, 9);
+            this.label10.Location = new System.Drawing.Point(231, 9);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(30, 31);
             this.label10.TabIndex = 23;
@@ -321,10 +313,21 @@
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.btnBatchSubmit);
             this.panel2.Controls.Add(this.txtNecleusBatchEnter);
-            this.panel2.Location = new System.Drawing.Point(230, 284);
+            this.panel2.Location = new System.Drawing.Point(237, 284);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(467, 174);
             this.panel2.TabIndex = 24;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Adobe Devanagari", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label14.ForeColor = System.Drawing.Color.Red;
+            this.label14.Location = new System.Drawing.Point(189, 24);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(175, 14);
+            this.label14.TabIndex = 20;
+            this.label14.Text = "  Blk-37-026；Blk-37-025";
             // 
             // label13
             // 
@@ -374,23 +377,34 @@
             this.txtNecleusBatchEnter.Size = new System.Drawing.Size(450, 98);
             this.txtNecleusBatchEnter.TabIndex = 14;
             // 
-            // label14
+            // label5
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Adobe Devanagari", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(189, 24);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(175, 14);
-            this.label14.TabIndex = 20;
-            this.label14.Text = "  Blk-37-026；Blk-37-025";
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(75, 189);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(123, 13);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Item Id:   30303；30305";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.Color.Red;
+            this.label15.Location = new System.Drawing.Point(78, 294);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(108, 13);
+            this.label15.TabIndex = 25;
+            this.label15.Text = "ProcessId:   1；4；7";
             // 
             // SharedArtwork
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label10);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtProcessId);
             this.Controls.Add(this.label7);
@@ -398,7 +412,6 @@
             this.Controls.Add(this.txtNucleusUrl);
             this.Controls.Add(this.txtThumbnialUrl);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbFileNames);
             this.Controls.Add(this.picNucleus);
@@ -439,7 +452,6 @@
         private System.Windows.Forms.PictureBox picThumbnial;
         private System.Windows.Forms.ComboBox cbFileNames;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TextBox imageSearchName;
         private System.Windows.Forms.Panel panel1;
@@ -461,5 +473,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label15;
     }
 }
