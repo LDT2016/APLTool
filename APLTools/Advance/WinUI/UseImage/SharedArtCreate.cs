@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Drawing;
 using System.IO;
@@ -17,6 +18,12 @@ namespace APLTools.Advance.WinUI.UseImage
         #region fields
 
         private static SharedArtwork instance;
+        private enum SharedArtSubmitActionType
+        {
+            Single,
+            Batch
+        }
+        private BackgroundWorker backgroundWorker1 = new BackgroundWorker();
 
         #endregion
 
@@ -25,8 +32,39 @@ namespace APLTools.Advance.WinUI.UseImage
         private SharedArtwork()
         {
             InitializeComponent();
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.WorkerSupportsCancellation = true;
+            backgroundWorker1.DoWork += BackgroundWorker1_DoWork;
+            backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
+            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+        }
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Enabled = true;
+
         }
 
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+        }
+
+        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var type = (SharedArtSubmitActionType)e.Argument;
+
+            switch (type)
+            {
+                case SharedArtSubmitActionType.Single:
+                    SingleSubmitAction();
+
+                    break;
+                case SharedArtSubmitActionType.Batch:
+                    BatchSubmitAction();
+                    break;
+                default:
+                    return;
+            }
+        }
         #endregion
 
         #region properties
@@ -60,11 +98,17 @@ namespace APLTools.Advance.WinUI.UseImage
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            Enabled = false;
+
+            backgroundWorker1.RunWorkerAsync(SharedArtSubmitActionType.Single);
+        }
+
+        private void SingleSubmitAction()
+        {
             var ret = false;
 
             try
             {
-                Enabled = false;
                 var fileNameNoExt = cbFileNames.SelectedItem.ToString();
 
                 if (!string.IsNullOrEmpty(fileNameNoExt))
@@ -106,7 +150,11 @@ namespace APLTools.Advance.WinUI.UseImage
             }
             finally
             {
-                Enabled = true;
+                if (backgroundWorker1.WorkerSupportsCancellation)
+                {
+                    // Cancel the asynchronous operation.
+                    backgroundWorker1.CancelAsync();
+                }
 
                 if (ret)
                 {
@@ -249,48 +297,19 @@ namespace APLTools.Advance.WinUI.UseImage
 
         private void btnBatchSubmit_Click(object sender, EventArgs e)
         {
-            //cart format
-            var list0 = new List<string>()
-                       {
-                           "a","b","c"
-                       };
+            Enabled = false;
 
+            backgroundWorker1.RunWorkerAsync(SharedArtSubmitActionType.Batch);
+        }
 
-            var list1 = new List<testclass>()
-                       {
-                           new testclass(){group = "g0", key = "b"},
-                           new testclass(){group = "g1", key = "a"},
-                           new testclass(){group = "g1", key = "c"}
-                       };
-
-            var list2 = new List<string>()
-                       {
-                           "a",
-                           "b",
-                           "e",
-                           "f"
-                       };
-
-            var g0 = list0.FindAll(x => list1.FindAll(m => m.group == "g0")
-                                             .ToList()
-                                             .Select(y => y.key)
-                                             .Contains(x))
-                          .ToList();
-
-            var g1 = list0.FindAll(x => list1.FindAll(m => m.group == "g1")
-                                             .ToList()
-                                             .Select(y => y.key)
-                                             .Contains(x))
-                          .ToList();
-
-
-
+        private void BatchSubmitAction()
+        {
             var ret = false;
             var successCount = 0;
             var failed = 0;
             try
             {
-                Enabled = false;
+                
                 var fileNames = txtNecleusBatchEnter.Text.Trim();
                 var fileNameNoExtArray = fileNames.Replace("\r\n", ";").Split(";".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
@@ -345,7 +364,11 @@ namespace APLTools.Advance.WinUI.UseImage
             }
             finally
             {
-                Enabled = true;
+                if (backgroundWorker1.WorkerSupportsCancellation)
+                {
+                    // Cancel the asynchronous operation.
+                    backgroundWorker1.CancelAsync();
+                }
 
                 if (failed == 0)
                 {

@@ -16,6 +16,13 @@ namespace APLTools.Advance.WinUI.UseImage
 {
     public partial class SavedArtwork : UserControl
     {
+        private enum SavedArtSubmitActionType
+        {
+            Single,
+            Batch
+        }
+        private BackgroundWorker backgroundWorker1 = new BackgroundWorker();
+
         private static SavedArtwork instance;
 
         public static SavedArtwork Instance
@@ -34,7 +41,41 @@ namespace APLTools.Advance.WinUI.UseImage
         private SavedArtwork()
         {
             InitializeComponent();
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.WorkerSupportsCancellation = true;
+            backgroundWorker1.DoWork += BackgroundWorker1_DoWork;
+            backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
+            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
         }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Enabled = true;
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+        }
+
+        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var type = (SavedArtSubmitActionType)e.Argument;
+
+            switch (type)
+            {
+                case SavedArtSubmitActionType.Single:
+                    SingleSubmitAction();
+
+                    break;
+                case SavedArtSubmitActionType.Batch:
+                    BatchSubmitAction();
+                    break;
+                default:
+                    return;
+            }
+        }
+
+        
 
         private string fullFileName;
         private void btnChooseFile_Click(object sender, EventArgs e)
@@ -47,19 +88,42 @@ namespace APLTools.Advance.WinUI.UseImage
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            Enabled = false;
+            backgroundWorker1.RunWorkerAsync(SavedArtSubmitActionType.Single);
+        }
+
+        private void btnSubMultiple_Click(object sender, EventArgs e)
+        {
+            Enabled = false;
+            backgroundWorker1.RunWorkerAsync(SavedArtSubmitActionType.Batch);
+        }
+
+        private void SingleSubmitAction()
         {
             var ret = false;
+
             try
             {
-                this.Enabled = false;
+                //Enabled = false;
                 var meta = new MetaData
-                {
-                    imageType = imageType.StockArt,
-                    stockArtType = stockArtType.DigitalBackground
-                };
+                           {
+                               customerNumber = txtCusNum.Text.Trim(),
+                               processIds = string.IsNullOrEmpty(txtProcessId.Text.Trim())
+                                                ? null
+                                                : new List<string>
+                                                  {
+                                                      txtProcessId.Text.Trim()
+                                                  },
+                               imprintFormat = txtImprintFormat.Text.Trim(),
+                               sequenceNumber = null,
+                               originalFilename = Path.GetFileName(fullFileName)
+                           };
 
-                ret = DamToolsHelper.AddDigitalBackgroundFile(fullFileName, meta);
+                ret = DamToolsHelper.AddSavedArtwork(fullFileName, meta);
+
+
             }
             catch (Exception ex)
             {
@@ -67,7 +131,13 @@ namespace APLTools.Advance.WinUI.UseImage
             }
             finally
             {
-                this.Enabled = true;
+                if (backgroundWorker1.WorkerSupportsCancellation)
+                {
+                    // Cancel the asynchronous operation.
+                    backgroundWorker1.CancelAsync();
+                }
+
+                //Enabled = true;
                 if (ret)
                 {
                     MessageBox.Show("Successful");
@@ -78,23 +148,48 @@ namespace APLTools.Advance.WinUI.UseImage
                 }
             }
         }
-
-        private void btnSubmit_Click(object sender, EventArgs e)
+        private void BatchSubmitAction()
         {
             var ret = false;
+            var successCount = 0;
+            var failed = 0;
+
             try
             {
                 this.Enabled = false;
-                var meta = new MetaData
-                {
-                    customerNumber = txtCusNum.Text.Trim(),
-                    processIds = string.IsNullOrEmpty(txtProcessId.Text.Trim()) ? null : new List<string> { txtProcessId.Text.Trim() },
-                    imprintFormat = txtImprintFormat.Text.Trim(),
-                    sequenceNumber = null,
-                    originalFilename = Path.GetFileName(fullFileName)
-                };
 
-                ret = DamToolsHelper.AddSavedArtwork(fullFileName, meta);
+                for (var i = 0; i < listSavedFile.Items.Count; i++)
+                {
+                    var uploadfile = listSavedFile.Items[i]
+                                                  .ToString();
+
+                    var meta = new MetaData
+                    {
+                        customerNumber = txtCusNum.Text.Trim(),
+                        processIds = string.IsNullOrEmpty(txtProcessId.Text.Trim())
+                                                    ? null
+                                                    : new List<string>
+                                                      {
+                                                          txtProcessId.Text.Trim()
+                                                      },
+                        imprintFormat = txtImprintFormat.Text.Trim(),
+                        sequenceNumber = null,
+                        originalFilename = Path.GetFileName(uploadfile)
+                    };
+
+                    ret = DamToolsHelper.AddSavedArtwork(uploadfile, meta);
+
+                    if (ret)
+                    {
+                        successCount += 1;
+                    }
+                    else
+                    {
+                        failed += 1;
+                    }
+
+                    Thread.Sleep(50);
+                }
             }
             catch (Exception ex)
             {
@@ -102,14 +197,20 @@ namespace APLTools.Advance.WinUI.UseImage
             }
             finally
             {
-                this.Enabled = true;
-                if (ret)
+
+                if (backgroundWorker1.WorkerSupportsCancellation)
                 {
-                    MessageBox.Show("Successful");
+                    // Cancel the asynchronous operation.
+                    backgroundWorker1.CancelAsync();
+                }
+
+                if (failed == 0)
+                {
+                    MessageBox.Show($"All succeed! (ok: {successCount})");
                 }
                 else
                 {
-                    MessageBox.Show("Failed");
+                    MessageBox.Show($"Exception happend! (ok: {successCount}, failed: {failed})");
                 }
             }
         }
@@ -144,58 +245,6 @@ namespace APLTools.Advance.WinUI.UseImage
             }
         }
 
-        private void btnSubMultiple_Click(object sender, EventArgs e)
-        {
-            var ret = false;
-            var successCount = 0;
-            var failed = 0;
-            try
-            {
-                this.Enabled = false;
-
-                for (var i = 0; i < listSavedFile.Items.Count; i++)
-                {
-                    var uploadfile = listSavedFile.Items[i].ToString();
-                    var meta = new MetaData
-                    {
-                        customerNumber = txtCusNum.Text.Trim(),
-                        processIds = string.IsNullOrEmpty(txtProcessId.Text.Trim()) ? null : new List<string> { txtProcessId.Text.Trim() },
-                        imprintFormat = txtImprintFormat.Text.Trim(),
-                        sequenceNumber = null,
-                        originalFilename = Path.GetFileName(uploadfile)
-                    };
-
-                    ret = DamToolsHelper.AddSavedArtwork(uploadfile, meta);
-
-                    if (ret)
-                    {
-                        successCount += 1;
-                    }
-                    else
-                    {
-                        failed += 1;
-                    }
-                    Thread.Sleep(50);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-            finally
-            {
-                this.Enabled = true;
-
-                if (failed == 0)
-                {
-                    MessageBox.Show($"All succeed! (ok: {successCount})");
-                }
-                else
-                {
-                    MessageBox.Show($"Exception happend! (ok: {successCount}, failed: {failed})");
-                }
-            }
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
