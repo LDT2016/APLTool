@@ -1,6 +1,4 @@
-﻿/* Created by hzzhao in 2015 */
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
