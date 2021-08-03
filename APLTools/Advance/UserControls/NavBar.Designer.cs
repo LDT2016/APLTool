@@ -22,24 +22,16 @@
         /// 使用代码编辑器修改此方法的内容。
         private void InitializeComponent()
         {
-            this.PnlLogo = new System.Windows.Forms.Panel();
             this.PnlBackGround = new System.Windows.Forms.Panel();
             this.PnlBottomLine = new System.Windows.Forms.Panel();
             this.PnlTopLine = new System.Windows.Forms.Panel();
+            this.PnlLogo = new System.Windows.Forms.Panel();
             this.PnlBackGround.SuspendLayout();
             this.SuspendLayout();
             // 
-            // PnlLogo
-            // 
-            this.PnlLogo.BackgroundImage = global::APLTools.Properties.Resources.DesignerLogo;
-            this.PnlLogo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PnlLogo.Location = new System.Drawing.Point(0, 443);
-            this.PnlLogo.Name = "PnlLogo";
-            this.PnlLogo.Size = new System.Drawing.Size(160, 50);
-            this.PnlLogo.TabIndex = 0;
-            // 
             // PnlBackGround
             // 
+            this.PnlBackGround.AutoScroll = true;
             this.PnlBackGround.BackgroundImage = global::APLTools.Properties.Resources.SideBarBG;
             this.PnlBackGround.Controls.Add(this.PnlBottomLine);
             this.PnlBackGround.Controls.Add(this.PnlTopLine);
@@ -67,9 +59,19 @@
             this.PnlTopLine.Size = new System.Drawing.Size(153, 1);
             this.PnlTopLine.TabIndex = 0;
             // 
+            // PnlLogo
+            // 
+            this.PnlLogo.BackgroundImage = global::APLTools.Properties.Resources.DesignerLogo;
+            this.PnlLogo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PnlLogo.Location = new System.Drawing.Point(0, 443);
+            this.PnlLogo.Name = "PnlLogo";
+            this.PnlLogo.Size = new System.Drawing.Size(160, 50);
+            this.PnlLogo.TabIndex = 0;
+            // 
             // NavBar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScroll = true;
             this.Controls.Add(this.PnlBackGround);
             this.Controls.Add(this.PnlLogo);
             this.Name = "NavBar";

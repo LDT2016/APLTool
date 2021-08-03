@@ -23,7 +23,9 @@ namespace APLTools.Advance.DAL
             LocalDbHelper.ConnectionString = connectionString;
         }
 #else
+        
         public static DbHelper LocalDbHelper = GetHelper("APL");
+        public static DbHelper ThumbnailLookupDbHelper = GetHelper("ThumbnailLookup");
         public static DbHelper TestDbHelper = GetHelper("APL");
         public static DbHelper LiveDbHelper = GetHelper("APL");
         public static DbHelper LocalIMPDataHelper = GetHelper("APL");

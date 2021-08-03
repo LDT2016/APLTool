@@ -32,6 +32,7 @@
             // 
             // PnlContent
             // 
+            this.PnlContent.AutoScroll = true;
             this.PnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlContent.Location = new System.Drawing.Point(154, 85);
             this.PnlContent.Name = "PnlContent";
@@ -59,6 +60,7 @@
             // 
             // NavBar
             // 
+            this.NavBar.AutoScroll = true;
             this.NavBar.Dock = System.Windows.Forms.DockStyle.Left;
             this.NavBar.Location = new System.Drawing.Point(0, 85);
             this.NavBar.Name = "NavBar";

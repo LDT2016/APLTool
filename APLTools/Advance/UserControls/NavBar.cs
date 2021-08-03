@@ -43,7 +43,8 @@ namespace APLTools.Advance.UserControls
                        new ImageButton("Saved Art Search", "saved", Resources.devices),
                        new ImageButton("Digital Background Add", "digital", Resources.category),
                        new ImageButton("Background Download", "bgdown", Resources.category),
-                       new ImageButton("ChangeToSVG", AppToolsTargetModule.ChangeToSvg, Resources.category),
+                       //new ImageButton("ChangeToSVG", AppToolsTargetModule.ChangeToSvg, Resources.category),
+                       new ImageButton("Thumbnail Lookup", "thumbnaillookup", Resources.category),
                        //new ImageButton("ItemIds Import", "itemids", Resources.category)
                    };
         }

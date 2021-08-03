@@ -13,6 +13,10 @@ namespace APLTools.Advance.Model
     [Serializable]
     public class UserImage: INotifyPropertyChanged
     {
+        public int unique { set; get; }
+        public string tablename { set; get; }
+        public string update { set; get; }
+
         public int RowNum { set; get; }
         public string OriginalFilename { set; get; } = string.Empty;
         public string FilenameNoExtension { set; get; } = string.Empty;

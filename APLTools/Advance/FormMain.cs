@@ -82,9 +82,14 @@ namespace APLTools.Advance
                 case "saved":
                     LoadNewControl(SavedArt.Instance);
                     break;
-                
+
                 case "addshared":
                     LoadNewControl(APLTools.Advance.WinUI.UseImage.SharedArtwork.Instance);
+
+                    break;
+
+                case "thumbnaillookup":
+                    LoadNewControl(ThumbnailLookup.Instance);
 
                     break;
 

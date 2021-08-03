@@ -102,6 +102,8 @@
     <Compile Include="Advance\Model\ImprintFormat.cs" />
     <Compile Include="Advance\Model\PageData.cs" />
     <Compile Include="Advance\Model\Scene7URLBO.cs" />
+    <Compile Include="Advance\Model\ThumbnailsNewTable.cs" />
+    <Compile Include="Advance\Model\ThumbnailsOldTable.cs" />
     <Compile Include="Advance\Model\UserImage.cs" />
     <Compile Include="Advance\UserControls\Button.cs">
       <SubType>UserControl</SubType>
@@ -191,6 +193,12 @@
     <Compile Include="Advance\WinUI\UseImage\ChangeToSVG.Designer.cs">
       <DependentUpon>ChangeToSVG.cs</DependentUpon>
     </Compile>
+    <Compile Include="Advance\WinUI\UseImage\ThumbnailLookup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advance\WinUI\UseImage\ThumbnailLookup.Designer.cs">
+      <DependentUpon>ThumbnailLookup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Advance\WinUI\UseImage\SharedArtSearch.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -275,6 +283,9 @@
     <EmbeddedResource Include="Advance\UserControls\Button.resx">
       <DependentUpon>Button.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Advance\UserControls\NavBar.resx">
+      <DependentUpon>NavBar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Advance\UserControls\TextBox.resx">
       <DependentUpon>TextBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Advance\WinUI\UseImage\ChangeToSVG.resx">
       <DependentUpon>ChangeToSVG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Advance\WinUI\UseImage\ThumbnailLookup.resx">
+      <DependentUpon>ThumbnailLookup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Advance\WinUI\UseImage\SharedArtSearch.resx">
       <DependentUpon>SharedArtSearch.cs</DependentUpon>
